@@ -1,0 +1,13 @@
+product_id,name,base_units,daily_growth,weekend_boost,emoji
+P01,Espresso,32,0.8,1.1,☕
+P02,Americano,38,0.7,1.08,☕
+P03,Cappuccino,46,1.0,1.18,☕
+P04,Latte,43,0.9,1.16,☕
+P05,Mocha,29,0.6,1.12,🍫
+P06,Cold Brew,25,0.5,1.25,🧊
+P07,Matcha Latte,21,0.4,1.2,🍵
+P08,Caramel Macchiato,27,0.6,1.15,☕
+P09,Croissant,34,0.7,1.1,🥐
+P10,Chocolate Muffin,24,0.4,1.08,🧁
+P11,Blueberry Cheesecake,18,0.3,1.05,🍰
+P12,Cookies,31,0.6,1.06,🍪
