@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafelytics — Café Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <div class="brand-name">Cafelytics</div>
+          <div class="brand-caption">Café intelligence</div>
+        </div>
+      </div>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span>⌂</span> Overview</a>
+        <a class="nav-link" href="#forecast"><span>◷</span> Demand forecast</a>
+        <a class="nav-link" href="#analytics"><span>▥</span> Visual analytics</a>
+        <a class="nav-link" href="#risk"><span>△</span> Risk & cost</a>
+        <a class="nav-link" href="#scenarios"><span>⌁</span> What-if lab</a>
+        <a class="nav-link" href="#agents"><span>✦</span> BrewBuddy chat</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="status-dot"><span></span> Demo data connected</div>
+        <div class="sidebar-note">Built for practical, explainable café decisions.</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">CAFÉ OPERATIONS / CONTROL CENTER</div>
+          <h1>Good morning, manager.</h1>
+          <p class="page-subtitle">A clear view of tomorrow's stock decisions, without the noise.</p>
+        </div>
+        <div class="topbar-badge"><span></span> Forecast ready</div>
+      </header>
+
+      <section class="insight-banner" id="overview">
+        <div class="insight-icon">✦</div>
+        <div>
+          <div class="insight-label">Today's decision signal</div>
+          <div class="insight-text" id="insightBanner">Loading your sales insights…</div>
+        </div>
+      </section>
+
+      <section class="kpi-grid" id="decisionSnapshot">
+        <div class="kpi-card">
+          <span class="kpi-label">Menu coverage</span>
+          <strong id="kpiProducts">—</strong>
+          <p>Products available to plan</p>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Forecast demand</span>
+          <strong id="kpiDemand">—</strong>
+          <p>Units across the menu</p>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Demand signals</span>
+          <strong id="kpiRising">—</strong>
+          <p>Products showing growth</p>
+        </div>
+        <div class="kpi-card accent-kpi">
+          <span class="kpi-label">Selected plan</span>
+          <strong id="kpiSelected">—</strong>
+          <p>Recommended units for the active item</p>
+        </div>
+      </section>
+
+      <section class="section-block" id="forecast">
+        <div class="section-toolbar">
+          <div>
+            <div class="eyebrow">PRODUCT VIEW</div>
+            <h2>Choose a product</h2>
+          </div>
+          <div class="product-count" id="productCount">— product categories</div>
+        </div>
+        <div class="product-nav" id="productNav"></div>
+
+        <div class="dashboard-grid">
+          <section class="panel forecast-panel">
+            <div class="panel-heading">
+              <div>
+                <div class="eyebrow">TOMORROW'S PLAN</div>
+                <h2 id="ticketProduct">—</h2>
+              </div>
+              <div class="date-pill" id="ticketDate">—</div>
+            </div>
+
+            <div class="product-media">
+              <div class="media-preview" id="mediaPreview">
+                <div class="media-placeholder" id="mediaPlaceholder">☕</div>
+                <img id="productImage" alt="Selected product preview">
+              </div>
+              <div class="media-controls">
+                <div>
+                  <div class="media-title">Product reference image</div>
+                  <div class="media-subtitle">Upload a photo of the item you want to forecast.</div>
+                </div>
+                <label class="upload-btn" for="productImageInput">Upload image</label>
+                <input type="file" id="productImageInput" accept="image/*">
+                <button class="clear-image" id="clearImageBtn" type="button">Remove</button>
+              </div>
+            </div>
+
+            <div class="recommendation">
+              <div class="recommendation-label">Recommended stock</div>
+              <div class="recommendation-number" id="predictedNum">—</div>
+              <div class="recommendation-range" id="rangeText">—</div>
+            </div>
+
+            <div class="trend-box">
+              <div class="trend-heading"><span>Recent sales movement</span><span>Last 14 days</span></div>
+              <div class="spark" id="sparkline">—</div>
+            </div>
+
+            <div class="manager-line" id="managerLine">—</div>
+          </section>
+
+          <section class="panel explanation-panel">
+            <div class="panel-heading">
+              <div>
+                <div class="eyebrow">EXPLAINABILITY</div>
+                <h2>Why this number?</h2>
+              </div>
+              <div class="small-tag">Transparent</div>
+            </div>
+            <div id="reasoningTrail"></div>
+            <div class="explanation-footer">The recommendation uses historical averages, recent demand and day-of-week patterns.</div>
+          </section>
+        </div>
+      </section>
+
+
+      <section class="section-block" id="analytics">
+        <div class="section-toolbar">
+          <div>
+            <div class="eyebrow">VISUAL ANALYTICS</div>
+            <h2>See the pattern before making the call</h2>
+          </div>
+          <div class="section-description">Simple visuals for faster inventory decisions.</div>
+        </div>
+        <div class="analytics-grid">
+          <section class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Sales trend</h3>
+                <p>Daily units sold for the selected product.</p>
+              </div>
+              <div class="small-tag">14 days</div>
+            </div>
+            <canvas id="salesTrendChart" aria-label="Sales trend chart"></canvas>
+            <div class="chart-legend"><span class="legend-line"></span> Actual units sold</div>
+          </section>
+          <section class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Stock decision comparison</h3>
+                <p>How the three ordering choices compare.</p>
+              </div>
+            </div>
+            <canvas id="stockComparisonChart" aria-label="Stock scenario comparison chart"></canvas>
+            <div class="chart-legend"><span class="legend-bar"></span> Units to consider</div>
+          </section>
+        </div>
+        <div class="insight-cards" id="analyticsInsights">
+          <div class="mini-insight"><span class="mini-label">Peak day</span><strong>—</strong><p>Loading…</p></div>
+          <div class="mini-insight"><span class="mini-label">Average demand</span><strong>—</strong><p>Loading…</p></div>
+          <div class="mini-insight"><span class="mini-label">Planning note</span><strong>—</strong><p>Loading…</p></div>
+        </div>
+      </section>
+
+      <section class="section-block" id="risk">
+        <div class="section-toolbar">
+          <div>
+            <div class="eyebrow">DECISION SUPPORT</div>
+            <h2>Risk & cost analysis</h2>
+          </div>
+          <div class="section-description">Compare the cost of ordering too little or too much.</div>
+        </div>
+
+        <div class="risk-grid">
+          <section class="panel cost-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Stock scenarios</h3>
+                <p>Estimated exposure at three stock levels.</p>
+              </div>
+            </div>
+            <div id="costRows"></div>
+          </section>
+
+          <section class="panel assumptions-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Cost assumptions</h3>
+                <p>Adjust these values to match your store.</p>
+              </div>
+            </div>
+            <div class="assumptions">
+              <label>Margin lost / unmet unit (₹)
+                <input type="number" id="marginInput" value="25" min="0">
+              </label>
+              <label>Waste cost / excess unit (₹)
+                <input type="number" id="wasteInput" value="12" min="0">
+              </label>
+            </div>
+            <div class="assumption-note">These values affect the estimated cost, not the underlying forecast.</div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section-block" id="scenarios">
+        <div class="section-toolbar">
+          <div>
+            <div class="eyebrow">SCENARIO EXPLORER</div>
+            <h2>What-if lab</h2>
+          </div>
+          <div class="section-description">Test a change before making the decision.</div>
+        </div>
+
+        <section class="panel whatif-panel">
+          <div class="whatif-intro">
+            <div class="scenario-icon">⌁</div>
+            <div>
+              <h3>Ask a practical question</h3>
+              <p>Change demand or set a stock limit and see how the recommendation responds.</p>
+            </div>
+          </div>
+          <input type="text" id="whatifInput" placeholder="Try: what if demand increases by 20%?">
+          <div class="chips">
+            <button data-q="what if demand increases by 20%?">Demand +20%</button>
+            <button data-q="what if demand drops by 15%?">Demand −15%</button>
+            <button data-q="what if I only have 50 units available?">Only 50 units</button>
+            <button data-q="what if there's a festival tomorrow?">Festival tomorrow</button>
+          </div>
+          <div class="whatif-actions">
+            <button class="stamp-btn" id="askBtn">Run scenario</button>
+            <button class="reset-scenario" id="resetScenarioBtn" type="button">Reset</button>
+          </div>
+          <div class="scenario-summary" id="scenarioSummary">
+            <span class="scenario-status">BASELINE</span>
+            <strong id="scenarioTitle">No scenario applied</strong>
+            <p id="scenarioDetail">Run a scenario to compare the recommendation with your available stock or expected demand.</p>
+          </div>
+          <div class="receipt-answer" id="answerBox"></div>
+        </section>
+      </section>
+
+      <section class="section-block agent-section" id="agents">
+        <div class="section-toolbar">
+          <div>
+            <div class="eyebrow">AI-ASSISTED DECISION DESK</div>
+            <h2>Talk to the Cafelytics team</h2>
+          </div>
+          <div class="section-description">Ask BrewBuddy for a clear explanation, risk check, or scenario summary.</div>
+        </div>
+        <div class="agent-grid">
+          <section class="panel chat-panel">
+            <div class="panel-heading">
+              <div><h3>Manager chat</h3><p>Ask about forecasts, risks, recommendations or scenarios.</p></div>
+              <div class="small-tag">Local AI-style assistant</div>
+            </div>
+            <div class="chat-window" id="chatWindow" aria-live="polite">
+              <div class="chat-message agent"><span class="speaker">BrewBuddy</span>Hi! I’m BrewBuddy ☕ I can explain the forecast, check stock risk, and compare simple what-if scenarios using your selected product’s data.</div>
+            </div>
+            <div class="chat-compose">
+              <input id="chatInput" type="text" placeholder="e.g. Why is this the recommended stock?" aria-label="Chat question">
+              <button class="chat-send" id="chatSend" type="button">Send</button>
+            </div>
+            <div class="chat-prompts">
+              <button data-chat="Why is this the recommended stock?">Explain recommendation</button>
+              <button data-chat="What are the main risks?">Show risks</button>
+              <button data-chat="What if demand increases by 20%?">Test +20%</button>
+              <button data-chat="Summarize the decision">Summarize</button>
+            </div>
+            <div class="chat-help">BrewBuddy uses the selected item, historical sales, forecast, and your cost assumptions. Try one question at a time.</div>
+          </section>
+          </div>
+      </section>
+
+      <footer class="footer-note">
+        <span>Cafelytics</span> · Demo forecast based on the supplied sales dataset. Replace the CSV files with real POS exports when ready.
+      </footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
